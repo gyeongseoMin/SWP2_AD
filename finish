@@ -9,7 +9,7 @@ class Finish_Win(QDialog):
         self.initUI()
 
     def initUI(self):
-        label1 = QLabel('거지가 되었습니다ㅠㅠ', self)
+        label1 = QLabel('부자가 되었습니다ㅠㅠ', self)
         label1.setAlignment(Qt.AlignCenter)
 
         font1 = label1.font()
@@ -39,6 +39,9 @@ class Finish_Win(QDialog):
 
     def outputFinishWindow(self):
         return super().exec_()
+
+    def disable_btn(self):
+        self.checkResultButton.setEnabled(False)
 
 
 if __name__=='__main__':
