@@ -1,0 +1,84 @@
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QDialog
+from PyQt5.QtCore import Qt, QCoreApplication
+from logic import Game
+# from finish import Finish_Win
+# from finish_lose import Finish_Lose
+from balance import Balance
+
+class Finish_Win(QDialog):
+
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+
+        self.label1 = QLabel("", self)
+
+        #self.result = Result()
+
+
+
+        self.balances = Balance()
+        self.balances.currentBalance()
+        #self.balance.currentBalance() == 0:
+
+
+        if self.balances.currentBalance() == 0:
+            self.label1.setText(self.label1.text() + "거지가 되었습니다ㅠㅠ")
+
+        else:
+            
+            #self.balance.currentBalance() <= 0:
+            
+            self.label1.setText(self.label1.text() + "부자가 되었습니다^!^")
+
+
+
+        """
+        else:
+            return 0
+        
+        print("ww")
+"""
+
+        self.label1.setAlignment(Qt.AlignCenter)
+
+        font1 = self.label1.font()
+        font1.setPointSize(18)
+
+        font1.setFamily('Times New Roman')
+        font1.setBold(True)
+
+        self.label1.setFont(font1)
+
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.label1)
+
+        self.setLayout(layout)
+
+        btn = QPushButton('Close', self)
+        btn.setStyleSheet('color:white; background:black')
+        btn.resize(100, 40)
+        btn.move(200, 300)
+        btn.clicked.connect(QCoreApplication.instance().quit)
+
+        self.setWindowTitle('Rock-Paper-Scissors Game')
+        self.resize(300, 380)
+        self.show()
+        print("suceess")
+
+
+    def outputFinishWindow(self):
+        return super().exec_()
+
+    def disable_btn(self):
+        self.checkResultButton.setEnabled(False)
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = Finish_Win()
+    sys.exit(app.exec_())
